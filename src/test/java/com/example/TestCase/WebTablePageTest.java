@@ -25,7 +25,7 @@ public class WebTablePageTest extends BaseClass {
         HomePage homePage = new HomePage();
         ElementPage elementPage = new ElementPage();
         elementPage = homePage.ClickOnElement();
-        webTablePage=homePage.clickOnWebTable();
+        webTablePage=elementPage.clickOnWebTable();
     }
     @Test
     public void validateWebTablePage() throws InterruptedException {

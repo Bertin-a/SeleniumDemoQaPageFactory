@@ -22,7 +22,7 @@ public class CheckBoxPageTest extends BaseClass {
         HomePage homePage = new HomePage();
         ElementPage elementPage = new ElementPage();
         elementPage = homePage.ClickOnElement();
-        homePage.clickOnCheckBox();
+       checkBoxPage= elementPage.clickOnCheckBox();
     }
 
     @Test(priority = 1)

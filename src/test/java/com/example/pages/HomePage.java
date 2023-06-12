@@ -16,8 +16,7 @@ public class HomePage extends BaseClass {
     private WebElement elements;
     @FindBy (css = "body > div:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(2)")
     private WebElement checkBox;
-    @FindBy(css = "body > div:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(4)")
-    private WebElement webTable;
+
 
     public HomePage(){
       PageFactory.initElements(driver, this);
@@ -35,13 +34,9 @@ public class HomePage extends BaseClass {
         return new ElementPage();
 
     }
-    public CheckBoxPage clickOnCheckBox(){
-        checkBox.click();
-        return new CheckBoxPage();
-    }
-    public WebTablePage clickOnWebTable(){
-        webTable.click();
-        return new WebTablePage();
+//    public CheckBoxPage clickOnCheckBox(){
+//        checkBox.click();
+//        return new CheckBoxPage();
+//    }
 
-    }
 }
