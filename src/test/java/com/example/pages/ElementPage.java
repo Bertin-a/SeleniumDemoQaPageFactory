@@ -1,7 +1,9 @@
 package com.example.pages;
 
 import com.example.demo4.BaseClass;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -17,6 +19,8 @@ public class ElementPage extends BaseClass {
 
     @FindBy(xpath = "//div[@class='element-list collapse show']//li[@id='item-4']")
     private WebElement buttons;
+    @FindBy(xpath = "(//li[@id='item-5'])[1]")
+    private WebElement links;
     public ElementPage(){
         PageFactory.initElements(driver, this);
 
@@ -48,6 +52,18 @@ public class ElementPage extends BaseClass {
     public WebTablePage clickOnWebTable(){
         webTable.click();
         return new WebTablePage();
+
+    }
+    private void scrollIntoView(WebElement element) {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    public LinksPage clickOnLinks() throws InterruptedException {
+        scrollIntoView(links);
+        Thread.sleep(3000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(links).click().perform();
+        return new LinksPage();
 
     }
 

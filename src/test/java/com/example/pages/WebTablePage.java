@@ -101,7 +101,6 @@ public class WebTablePage extends BaseClass {
         for (int i = rows.size() - 1; i >= 0; i--) {
          WebElement row = rows.get(i);
             //System.out.println(row);
-
           // Check if the row has any non-empty cells
 
           if (!row.findElement(By.className("rt-tr")).getText().isEmpty()) {
