@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 public class ElementPage extends BaseClass {
     @FindBy(css ="body > div:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1)" )
@@ -23,8 +24,8 @@ public class ElementPage extends BaseClass {
     private WebElement links;
     public ElementPage(){
         PageFactory.initElements(driver, this);
-
     }
+    @Test
     public boolean validateElementPage(){
         elementLogo.isDisplayed();
         return true;

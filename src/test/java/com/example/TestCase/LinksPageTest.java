@@ -33,6 +33,7 @@ public class LinksPageTest extends BaseClass {
         linksPage.clickOnHomeLink();
         Thread.sleep(3000);
         softAssert.assertTrue(linksPage.verifyHomePage(), "Page did not switch");
+        softAssert.assertAll();
     }
 
 }

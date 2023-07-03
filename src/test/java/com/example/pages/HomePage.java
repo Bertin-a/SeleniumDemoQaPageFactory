@@ -14,8 +14,8 @@ public class HomePage extends BaseClass {
     private WebElement logo;
     @FindBy(css = "body > div:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")
     private WebElement elements;
-    @FindBy (css = "body > div:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(2)")
-    private WebElement checkBox;
+    @FindBy (xpath = "//body/div[@id='app']/div[@class='body-height']/div[@class='home-content']/div[@class='home-body']/div[@class='category-cards']/div[2]")
+    private WebElement forms;
 
 
     public HomePage(){
@@ -34,6 +34,13 @@ public class HomePage extends BaseClass {
         return new ElementPage();
 
     }
+    public FormsPage clickOnForms() throws InterruptedException {
+        Thread.sleep(3000);
+        forms.click();
+        return new FormsPage();
+
+    }
+
 //    public CheckBoxPage clickOnCheckBox(){
 //        checkBox.click();
 //        return new CheckBoxPage();
