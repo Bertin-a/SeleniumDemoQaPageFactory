@@ -32,8 +32,6 @@ public class PracticeFormsPageTest extends BaseClass {
     public void fillForm() throws InterruptedException {
         set();
         practiceFromsPage.fillForm();
-
-
     }
    // @Test
 

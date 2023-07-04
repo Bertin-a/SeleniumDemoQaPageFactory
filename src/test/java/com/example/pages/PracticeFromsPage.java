@@ -102,20 +102,12 @@ public class PracticeFromsPage extends BaseClass {
 //       subject.sendKeys(Keys.ARROW_DOWN);
          subject.sendKeys(Keys.ENTER);
 
-        Thread.sleep(3000);
-        randomNumber = random.nextInt(3);
-        Thread.sleep(3000);
-        hobbies.get(randomNumber).click();
+         Thread.sleep(3000);
+         randomNumber = random.nextInt(3);
+         Thread.sleep(3000);
+         hobbies.get(randomNumber).click();
 
-       uploadImage(driver);
-
-
-
-
-
-
-
-
+         uploadImage(driver);
 
 
     }
@@ -124,9 +116,9 @@ public class PracticeFromsPage extends BaseClass {
     private void uploadImage(WebDriver driver){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the path to the image file: ");
-        String imagePath = input.nextLine();
+        //String imagePath = input.nextLine();
 
-        chooseFile.sendKeys(imagePath);
+        chooseFile.sendKeys(input.nextLine());
         //input.close();
     }
 
