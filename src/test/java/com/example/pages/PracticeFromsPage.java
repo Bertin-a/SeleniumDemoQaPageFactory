@@ -2,6 +2,7 @@ package com.example.pages;
 
 import com.example.demo4.BaseClass;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ import java.util.Random;
 
 // page_url = about:blank
 
-import java.util.Random;
+import java.util.Scanner;
 
 public class PracticeFromsPage extends BaseClass {
     @FindBy(css = "div[class='practice-form-wrapper'] h5")
@@ -42,9 +43,17 @@ public class PracticeFromsPage extends BaseClass {
     @FindBy(className = "react-datepicker__day--001")
     private WebElement day;
 
-    @FindBy(css = "[id='subjectsWrapper']>div[class='col-md-9 col-sm-12']>div>div")
+    @FindBy(id = "subjectsInput")
     private WebElement subject;
 
+    @FindAll({
+            @FindBy(css="label[for='hobbies-checkbox-1']"),
+            @FindBy(css="label[for='hobbies-checkbox-2']"),
+            @FindBy(css="label[for='hobbies-checkbox-3']")
+    })
+    private List<WebElement> hobbies;
+    @FindBy(id = "uploadPicture")
+    private WebElement chooseFile;
 
     public PracticeFromsPage() {
         PageFactory.initElements(driver, this);
@@ -53,16 +62,15 @@ public class PracticeFromsPage extends BaseClass {
         Thread.sleep(3000);
         return headerFormPage.isDisplayed();
     }
-    private List<WebElement> getElements(){
-        return genders;
-    }
+
+
 
     public void fillForm() throws InterruptedException {
         firstname.sendKeys("bertina");
         lastname.sendKeys("ayuure");
         email.sendKeys("be@gmail.com");
 
-        List<WebElement> elements = getElements();
+
 
         //Generate random numbers
         Random random = new Random();
@@ -89,13 +97,17 @@ public class PracticeFromsPage extends BaseClass {
          day.click();
          Thread.sleep(3000);
 
-         subject.click();
-         Thread.sleep(3000);
          subject.sendKeys("Science");
          Thread.sleep(3000);
 //       subject.sendKeys(Keys.ARROW_DOWN);
          subject.sendKeys(Keys.ENTER);
 
+        Thread.sleep(3000);
+        randomNumber = random.nextInt(3);
+        Thread.sleep(3000);
+        hobbies.get(randomNumber).click();
+
+       uploadImage(driver);
 
 
 
@@ -103,6 +115,19 @@ public class PracticeFromsPage extends BaseClass {
 
 
 
+
+
+
+    }
+
+    //upload image from machine with a specified file path
+    private void uploadImage(WebDriver driver){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the path to the image file: ");
+        String imagePath = input.nextLine();
+
+        chooseFile.sendKeys(imagePath);
+        //input.close();
     }
 
 }
