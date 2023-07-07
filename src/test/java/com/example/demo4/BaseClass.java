@@ -27,12 +27,10 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://demoqa.com/");
     }
-    @AfterMethod
-    public void tearDown() throws InterruptedException {
-        if (driver != null) {
-            System.out.println("111");
-            Thread.sleep(35000);
-            driver.close();
-        }
-    }
+//    @AfterMethod
+//    public void tearDown() throws InterruptedException {
+//        if (driver != null) {
+//            driver.close();
+//        }
+//    }
 }

@@ -1,10 +1,7 @@
 package com.example.pages;
 
 import com.example.demo4.BaseClass;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -69,7 +66,11 @@ public class PracticeFormsPage extends BaseClass {
             @FindBy(id = "react-select-3-option-3")
     })
     private List<WebElement> states;
+@FindBy(id = "react-select-4-input")
+private WebElement city;
 
+@FindBy(id = "react-select-4-option-0")
+private WebElement option;
 
     public PracticeFormsPage() {
         PageFactory.initElements(driver, this);
@@ -78,7 +79,6 @@ public class PracticeFormsPage extends BaseClass {
         Thread.sleep(3000);
         return headerFormPage.isDisplayed();
     }
-
 
 
     public void fillForm() throws InterruptedException {
@@ -122,36 +122,96 @@ public class PracticeFormsPage extends BaseClass {
          randomNumber = random.nextInt(3);
          Thread.sleep(3000);
          hobbies.get(randomNumber).click();
+        System.out.println("Enter file path");
+        uploadImage(driver);
+
+        // uploadImageLogic();
 
 
 
-         uploadImage(driver);
          currentAddress.sendKeys("Anaji");
+         JavascriptExecutor js = (JavascriptExecutor) driver;
+//
+//           js.executeScript("arguments[0].click()",dropDownArrow);
+        driver.manage().window().setSize(new Dimension(472, 756));
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(dropDownArrow).click().perform();
+        states.get(0).click();
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-           js.executeScript("arguments[0].click()",dropDownArrow);
-
-
+//        WebElement cityElement = driver.findElement(By.id("react-select-4-input"));
+        actions.moveToElement(city).click().perform();
+//        driver.findElement(By.id("react-select-4-option-0")).click();
+        option.click();
+//        driver.manage().window().maximize();
 
 //         dropDownArrow.click();
          Thread.sleep(3000);
-//
-//        //randomNumber = random.nextInt(2);
-//        js.executeScript("arguments[0].click()",states.get(1));
+
+        //randomNumber = random.nextInt(2);
+       // js.executeScript("arguments[0].click()",states.get(1));
 
     }
 
     //upload image from machine with a specified file path
     private void uploadImage(WebDriver driver){
+        Scanner input = new Scanner(System.in);
+        String imageFilePath = input.nextLine();
+        chooseFile.sendKeys(imageFilePath);
 
-        System.out.println("Enter the path to the image file: ");
-        //String imagePath = input.nextLine();
 
-        chooseFile.sendKeys(input.nextLine());
+
         input.close();
     }
-
-
+//    private void uploadImageLogic(){
+//
+//
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("pick 1 to automatically upload an image file or 2 to tpe file path ");
+//
+//        // Create a separate thread to handle the timeout logic
+//        Thread timeoutThread = new Thread(() -> {
+//            try {
+//                System.out.println("Ernest");
+//                Thread.sleep(10000);
+//
+//                System.out.println("Bryace");
+//                // Wait for 30 seconds
+//            } catch (InterruptedException e) {
+//                // Interrupted, do nothing
+//            } finally {
+//                System.out.println("here");
+//                if (!scanner.hasNext()) {
+//                    // No input received, select 1 automatically
+//                    System.out.println("No input received. Selecting 1 automatically.");
+//                    processUserInput(1);
+//                    chooseFile.sendKeys("src/test/java/com/example/images/snap.PNG");
+//                }
+//                else {
+//                    System.out.println("This is an else");
+//                    System.out.println(scanner.nextInt());
+//                }
+//            }
+//        });
+//
+//        timeoutThread.start();
+//
+//        // Wait for user input
+//        if (scanner.hasNextInt()) {
+//            int userInput = scanner.nextInt();
+//            processUserInput(userInput);
+//        }
+//
+//        // Stop the timeout thread if it's still running
+//        timeoutThread.interrupt();
+//    }
+//
+//    private void processUserInput(int userInput) {
+//        // Process the user input here
+//        Scanner input = new Scanner(System.in);
+//        String imageFilePath = input.nextLine();
+//        chooseFile.sendKeys(imageFilePath);
+//    }
 
 }
+
