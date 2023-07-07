@@ -19,10 +19,10 @@ public class FormsPage extends BaseClass {
         String text=formsLogo.getText();
         return text;
     }
-    public PracticeFromsPage clickOnPracticeForm() throws InterruptedException {
+    public PracticeFormsPage clickOnPracticeForm() throws InterruptedException {
         Thread.sleep(3000);
         practiceForms.click();
-        return new PracticeFromsPage();
+        return new PracticeFormsPage();
     }
 
     }

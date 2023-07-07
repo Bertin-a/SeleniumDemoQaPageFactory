@@ -6,10 +6,10 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class PracticeFormsPageTest extends BaseClass {
-    private PracticeFromsPage practiceFromsPage;
+    private PracticeFormsPage practiceFormsPage;
     private SoftAssert softAssert;
     public void setup(){
-        practiceFromsPage= new PracticeFromsPage();
+        practiceFormsPage = new PracticeFormsPage();
         softAssert = new SoftAssert();
 
     }
@@ -18,20 +18,20 @@ public class PracticeFormsPageTest extends BaseClass {
         HomePage homePage = new HomePage();
         homePage.clickOnForms();
         FormsPage  formsPage = new FormsPage();
-        practiceFromsPage=formsPage.clickOnPracticeForm();
+        practiceFormsPage =formsPage.clickOnPracticeForm();
 
     }
     @Test
     public void verifyPracticeFormPage() throws InterruptedException {
         set();
-        softAssert.assertTrue(practiceFromsPage.verifyPracticePage(),"Page is not displayed");
+        softAssert.assertTrue(practiceFormsPage.verifyPracticePage(),"Page is not displayed");
         softAssert.assertAll();
 
     }
     @Test
     public void fillForm() throws InterruptedException {
         set();
-        practiceFromsPage.fillForm();
+        practiceFormsPage.fillForm();
     }
    // @Test
 

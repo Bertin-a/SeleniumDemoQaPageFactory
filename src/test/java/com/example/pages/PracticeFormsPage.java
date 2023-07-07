@@ -1,9 +1,11 @@
 package com.example.pages;
 
 import com.example.demo4.BaseClass;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,7 +18,8 @@ import java.util.Random;
 
 import java.util.Scanner;
 
-public class PracticeFromsPage extends BaseClass {
+public class PracticeFormsPage extends BaseClass {
+    Scanner input = new Scanner(System.in);
     @FindBy(css = "div[class='practice-form-wrapper'] h5")
     private WebElement headerFormPage;
     @FindBy(id = "firstName")
@@ -54,8 +57,21 @@ public class PracticeFromsPage extends BaseClass {
     private List<WebElement> hobbies;
     @FindBy(id = "uploadPicture")
     private WebElement chooseFile;
+    @FindBy(id = "currentAddress")
+    private WebElement currentAddress;
 
-    public PracticeFromsPage() {
+    @FindBy(id = "react-select-3-input")
+    private WebElement dropDownArrow;
+    @FindAll({
+            @FindBy(id = "react-select-3-option-0"),
+            @FindBy(id="react-select-3-option-1"),
+            @FindBy(id = "react-select-3-option-2"),
+            @FindBy(id = "react-select-3-option-3")
+    })
+    private List<WebElement> states;
+
+
+    public PracticeFormsPage() {
         PageFactory.initElements(driver, this);
     }
     public boolean verifyPracticePage() throws InterruptedException {
@@ -75,7 +91,7 @@ public class PracticeFromsPage extends BaseClass {
         //Generate random numbers
         Random random = new Random();
         int randomNumber = random.nextInt(3);
-        Thread.sleep(10000);
+        Thread.sleep(3000);
         genders.get(randomNumber).click();
 
         number.sendKeys("0234567890");
@@ -87,13 +103,13 @@ public class PracticeFromsPage extends BaseClass {
         Select select = new Select(month);
 
         randomNumber = random.nextInt(12);
-        Thread.sleep(13000);
+        Thread.sleep(3000);
         select.selectByIndex(randomNumber);
         Thread.sleep(3000);
 
          select= new Select(year);
          select.selectByVisibleText("2000");
-         Thread.sleep(13000);
+         Thread.sleep(3000);
          day.click();
          Thread.sleep(3000);
 
@@ -107,19 +123,35 @@ public class PracticeFromsPage extends BaseClass {
          Thread.sleep(3000);
          hobbies.get(randomNumber).click();
 
-         uploadImage(driver);
 
+
+         uploadImage(driver);
+         currentAddress.sendKeys("Anaji");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+           js.executeScript("arguments[0].click()",dropDownArrow);
+
+
+
+//         dropDownArrow.click();
+         Thread.sleep(3000);
+//
+//        //randomNumber = random.nextInt(2);
+//        js.executeScript("arguments[0].click()",states.get(1));
 
     }
 
     //upload image from machine with a specified file path
     private void uploadImage(WebDriver driver){
-        Scanner input = new Scanner(System.in);
+
         System.out.println("Enter the path to the image file: ");
         //String imagePath = input.nextLine();
 
         chooseFile.sendKeys(input.nextLine());
-        //input.close();
+        input.close();
     }
+
+
 
 }
